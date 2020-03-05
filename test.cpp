@@ -1,10 +1,11 @@
 #include <stdio.h>
-#include "BinTree.h"
+#include "Tree.h"
+#include "BSNode.h"
 
 int main()
 {
-  BinTree<int> t;
-  
+  Tree<int, BSNode<int> > t;
+
   t.insert(20);
   t.insert(10);
   t.insert(30);
@@ -19,9 +20,19 @@ int main()
   t.insert(6);
   t.insert(9);
   t.print();
+  t.print(1);
+  int a;
+  scanf("%d",&a);
   printf("\n\n");
   t.remove(10);
   t.print();
+  scanf("%d",&a);
+  t.remove(6);
+  t.remove(7);
+  t.print();
+  t.print(1);
+  /*
+  scanf("%d",&a);
   printf("\n\n");
   t.remove(5);
   t.print();
@@ -35,7 +46,7 @@ int main()
   t.clear();
   t.print();
   
-  printf("%d\n", t.count(0));
+  printf("%d\n", t.count(0));*/
   
 
   return 0;
