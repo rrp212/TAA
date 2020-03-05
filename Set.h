@@ -9,9 +9,9 @@ public:
   virtual unsigned int size() = 0;
 
   // Modifiers
-  virtual void            clear() = 0;
-  virtual void insert(const T& v) = 0;
-  virtual void remove(const T& v) = 0;
+  virtual void               clear() = 0;
+  virtual Set<T>* insert(const T& v) = 0;
+  virtual void    remove(const T& v) = 0;
 
   // Lookup
   virtual unsigned int            count(const T& v) = 0;
@@ -20,4 +20,6 @@ public:
   virtual bool range_search(const T& l, const T& r) = 0;
   virtual const T&                            min() = 0;
   virtual const T&                            max() = 0;
+
+  virtual void print(int op=0) = 0;
 };
