@@ -1,8 +1,6 @@
 #pragma once
 
-#include <cassert>
 #include <iostream>
-#include "Set.h"
 
 template <class T>
 class BSNode
@@ -18,7 +16,7 @@ public:
   BSNode* parent{nullptr};
   BSNode*   left{nullptr};
   BSNode*  right{nullptr};
-  unsigned int    size{1};     //including self
+  unsigned int    size{1};
   
   BSNode(T v): value(v)
   {
@@ -69,11 +67,12 @@ BSNode<T>* BSNode<T>::insert(const T& v)
   BSNode<T>* &sub_t = (v < value)? left : right;
   BSNode<T>* t;
 
-  if(!sub_t) {
-    sub_t = new BSNode<T>(v);
-    sub_t->parent = this;
-    t = sub_t;
-  }
+  if(!sub_t)
+    {
+      sub_t = new BSNode<T>(v);
+      sub_t->parent = this;
+      t = sub_t;
+    }
   else
     t = sub_t->insert(v);
 
@@ -104,7 +103,6 @@ void BSNode<T>::remove(const T& v)
 	      else
 		parent->right = sub_t;
 	    }
-
 	  if(sub_t)
 	    sub_t->parent = parent;
 

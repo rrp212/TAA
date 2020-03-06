@@ -11,18 +11,16 @@ private:
 public:
   Tree() = default;
 
-  ~Tree() {
-    delete(root);
-  }
+  ~Tree() { delete(root); }
   
   // Capacity
   virtual bool        empty();
   virtual unsigned int size();
 
   // Modifiers
-  virtual void                   clear();
-  virtual Tree<T, N>* insert(const T& v);
-  virtual Tree<T, N>* remove(const T& v);
+  virtual Tree<T, N>&            clear();
+  virtual Tree<T, N>& insert(const T& v);
+  virtual Tree<T, N>& remove(const T& v);
 
   // Lookup
   virtual bool                            count(const T& v);
@@ -51,28 +49,33 @@ unsigned int Tree<T, N>::size()
 
 
 template <class T, class N>
-void Tree<T, N>::clear()
+Tree<T, N>& Tree<T, N>::clear()
 {
   delete(root);
   root = nullptr;
+  return *this;
 }
 
 
 template <class T, class N>
-Tree<T, N>* Tree<T, N>::insert(const T& v)
+Tree<T, N>& Tree<T, N>::insert(const T& v)
 {
-  empty() ? root = new N(v) : root->insert(v);
-
-  return this;
+  root ? root->insert(v) : root = new N(v);
+  return *this;
 }
 
 
 template <class T, class N>
-Tree<T, N>* Tree<T, N>::remove(const T& v)
+Tree<T, N>& Tree<T, N>::remove(const T& v)
 {
-  (root->size == 1 && root->value == v) ? clear() : root->remove(v);
-  
-  return this;
+  if(root)
+    {
+      if(root->size == 1 && root->value == v)
+	clear();
+      else
+	root->remove(v);
+    }
+  return *this;
 }
 
 
@@ -86,7 +89,7 @@ bool Tree<T, N>::count(const T& v)
 template <class T, class N>
 std::pair<const T&, bool> Tree<T, N>::lower_bound(const T& v) // first >=v
 {
-  if (!root)
+  if(!root)
     return std::make_pair(v, false);
 
   T x = root->lower_bound(v);
@@ -97,7 +100,7 @@ std::pair<const T&, bool> Tree<T, N>::lower_bound(const T& v) // first >=v
 template <class T, class N>
 std::pair<const T&, bool> Tree<T, N>::upper_bound(const T& v) // first >v
 {
-  if (!root)
+  if(!root)
     return std::make_pair(v, false);
 
   T x = root->upper_bound(v);
@@ -131,7 +134,7 @@ std::pair<const T&, bool> Tree<T, N>::max()
 template <class T, class N>
 void Tree<T, N>::print(int op)
 {
-  if (!root)
+  if(!root)
     printf("NULL\n");
   else
     root->print(op);

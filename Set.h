@@ -11,9 +11,9 @@ public:
   virtual unsigned int size() = 0;
 
   // Modifiers
-  virtual void               clear() = 0;
-  virtual Set<T>* insert(const T& v) = 0;
-  virtual Set<T>* remove(const T& v) = 0;
+  virtual Set<T>&            clear() = 0;
+  virtual Set<T>& insert(const T& v) = 0;
+  virtual Set<T>& remove(const T& v) = 0;
 
   // Lookup
   virtual bool                            count(const T& v) = 0;

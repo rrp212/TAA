@@ -2,10 +2,22 @@
 #include "Tree.h"
 #include "BSNode.h"
 
+#define BREAK scanf("%d", &a);printf("\n\n");
+
 int main()
 {
   Tree<int, BSNode<int> > t;
+  int a;
 
+  t.insert(20);
+  t.insert(10);
+  t.insert(30);
+  t.insert(5);
+  t.print(2);
+  BREAK;
+  t.clear();
+  t.print();
+  BREAK;
   t.insert(20);
   t.insert(10);
   t.insert(30);
@@ -19,35 +31,10 @@ int main()
   t.insert(7);
   t.insert(6);
   t.insert(9);
+  t.print(2);
+  BREAK;
+  t.remove(10).insert(10);
   t.print();
-  t.print(1);
-  int a;
-  scanf("%d",&a);
-  printf("\n\n");
-  t.remove(10);
-  t.print();
-  scanf("%d",&a);
-  t.remove(6);
-  t.remove(7);
-  t.print();
-  t.print(1);
-  /*
-  scanf("%d",&a);
-  printf("\n\n");
-  t.remove(5);
-  t.print();
-  printf("\n\n");
-  t.remove(20);
-  t.print();
-  t.print(1);
-
-  printf("%d\n", t.count(14));
-
-  t.clear();
-  t.print();
-  
-  printf("%d\n", t.count(0));*/
-  
 
   return 0;
 }
