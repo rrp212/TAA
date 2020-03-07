@@ -6,10 +6,12 @@ template <class T>
 class BSNode
 {
 protected:
+  unsigned int  my_ord();
+  void     update_size();
+
+public:                    // delete this line after testing
   BSNode*  rotate_left(); 
   BSNode* rotate_right();
-
-  int my_ord();
 
 public:
   T value;
@@ -44,17 +46,103 @@ public:
 };
 
 
+/*
+   P             P
+   |      L      |
+   A     -->     C     P,A,C,D change
+  / \           / \
+ B   C         A   E
+    / \       / \
+   D   E     B   D
+*/
 template <class T>
-BSNode<T>* BSNode<T>::rotate_left() // TODO <<<<<<<<<<<<<<<<<<<<
+BSNode<T>* BSNode<T>::rotate_left()
 {
-  return this;
+  if(!right)
+    return this;
+
+  BSNode<T> *P=parent, *A=this, *C=right, *D=right->left;
+
+  if(P == nullptr)
+    C->parent = nullptr;
+  else
+    {
+      (P->left == A)? P->left = C : P->right = C;
+      C->parent = P;
+    }
+
+  C->left   = A;
+  A->parent = C;
+
+  A->right  = D;
+  if(D)
+    D->parent = A;
+
+  A->update_size();
+  C->update_size();
+
+  return C;
+}
+
+
+/*
+     P         P
+     |    R    |
+     A   -->   B     P,A,B,E change
+    / \       / \
+   B   C     D   A
+  / \           / \
+ D   E         E   C
+*/
+template <class T>
+BSNode<T>* BSNode<T>::rotate_right()
+{
+  if(!left)
+    return this;
+
+  BSNode<T> *P=parent, *A=this, *B=left, *E=left->right;
+
+  if(P == nullptr)
+    B->parent = nullptr;
+  else
+    {
+      (P->left == A)? P->left = B : P->right = B;
+      B->parent = P;
+    }
+
+  B->right  = A;
+  A->parent = B;
+
+  A->left = E;
+  if(E)
+    E->parent = A;
+
+  A->update_size();
+  B->update_size();
+
+  return B;
 }
 
 
 template <class T>
-BSNode<T>* BSNode<T>::rotate_right()  // TODO <<<<<<<<<<<<<<<<<<
+unsigned int BSNode<T>::my_ord()
 {
-  return this;
+  int ans = left? left->size : 0;
+  BSNode<T>* t = this;
+  while(t->parent)
+    {
+      if(t == t->parent->right)
+	ans += t->parent->size - t->size;
+      t = t->parent;
+    }
+  return ans;
+}
+
+
+template <class T>
+void BSNode<T>::update_size()
+{
+  size = (left? left->size : 0) + (right? right->size : 0) + 1;
 }
 
 
@@ -76,7 +164,7 @@ BSNode<T>* BSNode<T>::insert(const T& v)
   else
     t = sub_t->insert(v);
 
-  size = (left ? left->size : 0) + (right ? right->size : 0) + 1;
+  update_size();
 
   return t;
 }
@@ -122,7 +210,7 @@ void BSNode<T>::remove(const T& v)
       sub_t->remove(v);
     }
   
-  size = (left ? left->size : 0) + (right ? right->size : 0) + 1;
+  update_size();
 }
 
 
@@ -198,6 +286,7 @@ void BSNode<T>::print(int op)
       if(left)
 	left->print(1);
 
+      printf("%d ", my_ord());
       std::cout << value;
       if(left)
 	std::cout << " " << left->value;
@@ -211,24 +300,9 @@ void BSNode<T>::print(int op)
 	std::cout << " " << right->value;
       else
 	printf(" NULL");
-      printf(" %d %d\n", my_ord(), size);
+      printf(" %d\n", size);
       
       if(right)
 	right->print(1);
     }
-}
-
-
-template <class T>
-int BSNode<T>::my_ord()
-{
-  int ans = left? left->size : 0;
-  BSNode<T>* t = this;
-  while(t->parent)
-    {
-      if(t == t->parent->right)
-	ans += t->parent->size - t->size;
-      t = t->parent;
-    }
-  return ans;
 }

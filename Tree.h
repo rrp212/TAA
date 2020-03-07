@@ -5,7 +5,7 @@
 template <class T, class N>
 class Tree : public Set<T>
 {
-private:
+public:             // change to private after testing
   N* root{nullptr};
 
 public:
@@ -134,8 +134,10 @@ std::pair<const T&, bool> Tree<T, N>::max()
 template <class T, class N>
 void Tree<T, N>::print(int op)
 {
+  printf("\n---vvv---\n");
   if(!root)
     printf("NULL\n");
   else
     root->print(op);
+  printf("---^^^---\n\n");
 }
