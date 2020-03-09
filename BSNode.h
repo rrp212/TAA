@@ -6,6 +6,10 @@ template <class T>
 class BSNode
 {
 protected:
+  BSNode* parent{nullptr};
+  BSNode*   left{nullptr};
+  BSNode*  right{nullptr};
+  
   unsigned int  my_ord();
   void     update_size();
 
@@ -15,10 +19,7 @@ public:                    // delete this line after testing
 
 public:
   T value;
-  BSNode* parent{nullptr};
-  BSNode*   left{nullptr};
-  BSNode*  right{nullptr};
-  unsigned int    size{1};
+  unsigned int size{1};
   
   BSNode(T v): value(v)
   {
@@ -31,8 +32,8 @@ public:
   }
 
   // Modifiers
-  virtual BSNode<T>* insert(const T& v);
-  virtual void       remove(const T& v);
+  virtual BSNode* insert(const T& v);
+  virtual void    remove(const T& v);
 
   // Lookup
   virtual bool                    count(const T& v);
