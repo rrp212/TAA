@@ -87,7 +87,10 @@ Tree<T, N>& Tree<T, N>::remove(const T& v)
 template <class T, class N>
 bool Tree<T, N>::count(const T& v)
 {
-  return root ? root->count(v) : 0;
+  bool r = root ? root->count(v) : 0;
+  while(root->parent)
+    root = (N*)root->parent;
+  return r;
 }
 
 

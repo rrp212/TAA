@@ -180,7 +180,7 @@ BSNode<T>* BSNode<T>::remove(const T& v)
       if(left && right)
 	{
 	  value = left->max();
-	  left->remove(value);
+	  left->BSNode<T>::remove(value);
 	}
       else
 	{
