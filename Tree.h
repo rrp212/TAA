@@ -74,8 +74,11 @@ Tree<T, N>& Tree<T, N>::remove(const T& v)
     {
       if(root->size == 1 && root->value == v)
 	clear();
-      else
-	root->remove(v);
+      else {
+	root = (N*)root->remove(v);
+	while(root->parent)
+	  root = (N*)root->parent;
+      }
     }
   return *this;
 }

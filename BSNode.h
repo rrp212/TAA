@@ -5,7 +5,8 @@
 template <class T>
 class BSNode
 {
-protected:
+  //protected:
+public:  
   BSNode* parent{nullptr};
   BSNode*   left{nullptr};
   BSNode*  right{nullptr};
@@ -33,7 +34,7 @@ public:
 
   // Modifiers
   virtual BSNode* insert(const T& v);
-  virtual void    remove(const T& v);
+  virtual BSNode* remove(const T& v);
 
   // Lookup
   virtual bool                    count(const T& v);
@@ -172,7 +173,7 @@ BSNode<T>* BSNode<T>::insert(const T& v)
 
 
 template <class T>
-void BSNode<T>::remove(const T& v)
+BSNode<T>* BSNode<T>::remove(const T& v)
 {
   if(value == v)
     {
@@ -184,7 +185,7 @@ void BSNode<T>::remove(const T& v)
       else
 	{
 	  BSNode<T>* sub_t = left? left : right;
-
+	  
 	  if(parent)
 	    {
 	      if(parent->left == this)
@@ -192,26 +193,25 @@ void BSNode<T>::remove(const T& v)
 	      else
 		parent->right = sub_t;
 	    }
-	  if(sub_t)
+	  if(sub_t) 
 	    sub_t->parent = parent;
-
+	  
 	  left  = nullptr;
 	  right = nullptr;
 	  delete(this);
-	  return;
+	  return sub_t;
 	}
     }
   else
     {
       BSNode<T>* sub_t = (v < value) ? left : right;
       
-      if(!sub_t)
-	return;
-      
-      sub_t->remove(v);
+      if (sub_t)
+	sub_t->remove(v);
     }
   
   update_size();
+  return this;
 }
 
 
