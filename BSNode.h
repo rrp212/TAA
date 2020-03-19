@@ -14,8 +14,8 @@ protected:
   void     update_size();
 
 public:                    // delete this line after testing
-  BSNode*  rotate_left(); 
-  BSNode* rotate_right();
+  virtual BSNode*  rotate_left(); 
+  virtual BSNode* rotate_right();
 
 public:
   T value;

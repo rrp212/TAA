@@ -61,6 +61,8 @@ template <class T, class N>
 Tree<T, N>& Tree<T, N>::insert(const T& v)
 {
   root ? root->insert(v) : root = new N(v);
+  while(root->parent)
+    root = (N*)root->parent;
   return *this;
 }
 
