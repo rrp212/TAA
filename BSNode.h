@@ -106,7 +106,7 @@ BSNode<T>* BSNode<T>::remove(const T& v)
       BSNode<T>* sub_t = (v < value) ? left : right;
       
       if (sub_t)
-	sub_t->remove(v);
+	sub_t->BSNode<T>::remove(v);
     }
   
   update_size();
