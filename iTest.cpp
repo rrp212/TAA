@@ -7,15 +7,15 @@
 #include "SplayNode.h"
 #include "TreapNode.h"
 #include "SkipList.h"
-#include "Stl.h"
+#include "STL.h"
 
 
 int main()
 {
   std::string impl = "None";
-  while(impl!="Tree" && impl!="SkipList" && impl!="Stl")
+  while(impl!="Tree" && impl!="SkipList" && impl!="STL")
     {
-      printf("Choose set implementation (Tree, SkipList, Stl)\n");
+      printf("Choose set implementation (Tree, SkipList, STL)\n");
       std::cin >> impl;
     }
   
@@ -33,7 +33,7 @@ int main()
   Tree<int, SplayNode<int> > tspl;
   Tree<int, TreapNode<int> > ttrp;
   SkipList<int> skip;
-  Stl<int> base;
+  STL<int> base;
 
   if(impl=="Tree" && node=="BS")
     S = &tbs;
@@ -85,7 +85,7 @@ int main()
       else if(command == "lower_bound")
 	{
 	  int v; std::cin >> v;
-	  std::pair<int,bool> ans = S->lower_bound(v);
+	  auto ans = S->lower_bound(v);
 	  if(ans.second)
 	    printf("%d\n", ans.first);
 	  else
@@ -94,7 +94,7 @@ int main()
       else if(command == "upper_bound")
 	{
 	  int v; std::cin >> v;
-	  std::pair<int,bool> ans = S->upper_bound(v);
+	  auto ans = S->upper_bound(v);
 	  if(ans.second)
 	    printf("%d\n", ans.first);
 	  else
@@ -107,7 +107,7 @@ int main()
 	}
       else if(command == "min")
 	{
-	  std::pair<int,bool> ans = S->min();
+	  auto ans = S->min();
 	  if(ans.second)
 	    printf("%d\n", ans.first);
 	  else
@@ -115,7 +115,7 @@ int main()
 	}
       else if(command == "max")
 	{
-	  std::pair<int,bool> ans = S->max();
+	  auto ans = S->max();
 	  if(ans.second)
 	    printf("%d\n", ans.first);
 	  else

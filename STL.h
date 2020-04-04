@@ -7,7 +7,7 @@
 
 
 template <class T>
-class Stl : public Set<T>
+class STL : public Set<T>
 {
 private:
   std::set<T> S;
@@ -18,9 +18,9 @@ public:
   virtual unsigned int size();
 
   // Modifiers
-  virtual Stl<T>&            clear();
-  virtual Stl<T>& insert(const T& v);
-  virtual Stl<T>& remove(const T& v);
+  virtual STL<T>&            clear();
+  virtual STL<T>& insert(const T& v);
+  virtual STL<T>& remove(const T& v);
 
   // Lookup
   virtual bool                            count(const T& v);
@@ -35,20 +35,20 @@ public:
 
 
 template <class T>
-bool Stl<T>::empty()
+bool STL<T>::empty()
 {
   return S.empty();
 }
 
 
 template <class T>
-unsigned int Stl<T>::size()
+unsigned int STL<T>::size()
 {
   return S.size();
 }
 
 template <class T>
-Stl<T>& Stl<T>::clear()
+STL<T>& STL<T>::clear()
 {
   S.clear();
   return *this;
@@ -56,7 +56,7 @@ Stl<T>& Stl<T>::clear()
 
 
 template <class T>
-Stl<T>& Stl<T>::insert(const T& v)
+STL<T>& STL<T>::insert(const T& v)
 {
   S.insert(v);
   return *this;
@@ -64,7 +64,7 @@ Stl<T>& Stl<T>::insert(const T& v)
 
 
 template <class T>
-Stl<T>& Stl<T>::remove(const T& v)
+STL<T>& STL<T>::remove(const T& v)
 {
   S.erase(v);
   return *this;
@@ -72,14 +72,14 @@ Stl<T>& Stl<T>::remove(const T& v)
 
 
 template <class T>
-bool Stl<T>::count(const T& v)
+bool STL<T>::count(const T& v)
 {
   return S.count(v);
 }
 
 
 template <class T>
-std::pair<const T&, bool> Stl<T>::lower_bound(const T& v) // first >=v
+std::pair<const T&, bool> STL<T>::lower_bound(const T& v) // first >=v
 {
   auto it = S.lower_bound(v);
   if(it!=S.end())
@@ -89,7 +89,7 @@ std::pair<const T&, bool> Stl<T>::lower_bound(const T& v) // first >=v
 
 
 template <class T>
-std::pair<const T&, bool> Stl<T>::upper_bound(const T& v) // first >v
+std::pair<const T&, bool> STL<T>::upper_bound(const T& v) // first >v
 {
   auto it = S.upper_bound(v);
   if(it!=S.end())
@@ -99,7 +99,7 @@ std::pair<const T&, bool> Stl<T>::upper_bound(const T& v) // first >v
 
 
 template <class T>
-bool Stl<T>::range_search(const T& l, const T& r)
+bool STL<T>::range_search(const T& l, const T& r)
 {
   auto it = S.lower_bound(l);
   return it!=S.end() && *it<=r;
@@ -107,7 +107,7 @@ bool Stl<T>::range_search(const T& l, const T& r)
 
 
 template <class T>
-std::pair<const T&, bool> Stl<T>::min()
+std::pair<const T&, bool> STL<T>::min()
 {
   if(!S.empty())
     return std::make_pair(*S.begin(), true);
@@ -117,7 +117,7 @@ std::pair<const T&, bool> Stl<T>::min()
 
 
 template <class T>
-std::pair<const T&, bool> Stl<T>::max()
+std::pair<const T&, bool> STL<T>::max()
 {
   if(!S.empty())
     return std::make_pair(*S.rbegin(), true);
@@ -127,7 +127,7 @@ std::pair<const T&, bool> Stl<T>::max()
 
 
 template <class T>
-void Stl<T>::print(int op)
+void STL<T>::print(int op)
 {
   std::cout << "Size: " << S.size() << std::endl;
   for (auto it=S.begin(); it!=S.end(); ++it)

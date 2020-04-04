@@ -231,7 +231,6 @@ std::pair<const T&, bool> SkipList<T>::lower_bound(const T& v) // first >=v
 	      found = true;
 	      p = header[i];
 	    }
-	  //printf("header %d %d\n", header[i]->value, found);
 	}
       if(p)
 	{
@@ -244,7 +243,7 @@ std::pair<const T&, bool> SkipList<T>::lower_bound(const T& v) // first >=v
 	    }
 	}
     }
-  return std::make_pair(found? (p->value):v, found);
+  return std::make_pair(p->value, true);
 }
 
 

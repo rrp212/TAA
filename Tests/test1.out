@@ -1,0 +1,50 @@
+true
+0
+insert 100
+false
+1
+insert 200
+insert 300
+insert 400
+false
+4
+clear
+true
+0
+insert 100
+true
+remove 100
+true
+false
+insert 100
+insert 200
+insert 300
+insert 400
+insert 500
+true
+true
+true
+100
+false
+100
+400
+500
+100
+false
+200
+400
+false
+true
+true
+true
+false
+true
+true
+false
+false
+100
+500
+remove 100
+remove 500
+200
+400
