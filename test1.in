@@ -1,0 +1,50 @@
+empty
+size
+insert 100
+empty
+size
+insert 200
+insert 300
+insert 400
+empty
+size
+clear
+empty
+size
+insert 100
+count 100
+remove 100
+empty
+count 100
+insert 100
+insert 200
+insert 300
+insert 400
+insert 500
+count 100
+count 400
+count 500
+lower_bound 0
+lower_bound 1000
+lower_bound 100
+lower_bound 300
+lower_bound 500
+upper_bound 0
+upper_bound 1000
+upper_bound 100
+upper_bound 300
+upper_bound 500
+range_search 0 1000
+range_search 50 150
+range_search 100 100
+range_search 350 370
+range_search 420 730
+range_search 500 500
+range_search 0 10
+range_search 1000 1010
+min
+max
+remove 100
+remove 500
+min
+max

@@ -206,21 +206,51 @@ bool BSNode<T>::count(const T& v)
 template <class T>
 const T& BSNode<T>::lower_bound(const T& v) // first >=v
 {
-  return v;
+  if(value >= v && left)
+    {
+      const T& l = left->lower_bound(v);
+      if(l >= v)
+	return l;
+    }
+  else if(value < v && right)
+    {
+      const T& r = left->lower_bound(v);
+      if(r < v)
+	return r; 
+    }
+  return value;
 }
 
 
 template <class T>
 const T& BSNode<T>::upper_bound(const T& v) // first >v
-{ 
-  return v;
+{
+  if(value > v && left)
+    {
+      const T& l = left->lower_bound(v);
+      if(l > v)
+	return l;
+    }
+  else if(value <= v && right)
+    {
+      const T& r = left->lower_bound(v);
+      if(r <= v)
+	return r; 
+    }
+  return value;
 }
 
 
 template <class T>
 bool BSNode<T>::range_search(const T& l, const T& r)
 {
-  return true;
+  if(l<=value && value<=r)
+    return true;
+  if(r<value && left)
+    return left->range_search(l,r);
+  if(value<l && right)
+    return right->range_search(l,r);
+  return false;
 }
 
 

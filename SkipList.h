@@ -214,39 +214,105 @@ bool SkipList<T>::count(const T& v)
 
 
 template <class T>
-std::pair<const T&, bool> SkipList<T>::lower_bound(const T& v)
+std::pair<const T&, bool> SkipList<T>::lower_bound(const T& v) // first >=v
 {
-  return std::make_pair(v,true);
+  if(!count(v))
+    return upper_bound(v);
+  bool found = false;
+  SkipNode<T>* p = nullptr;
+  for(int i=nLevels-1;!found && i>=0;i--)
+    {
+      if(!p && header[i]!=last)
+	{
+	  if(header[i]->value < v)
+	    p = header[i];
+	  if(header[i]->value == v)
+	    {
+	      found = true;
+	      p = header[i];
+	    }
+	  //printf("header %d %d\n", header[i]->value, found);
+	}
+      if(p)
+	{
+	  while(p->next[i] != last && p->next[i]->value < v)
+	    p = p->next[i];
+	  if(p->next[i] != last && p->next[i]->value == v)
+	    {
+	      found = true;
+	      p = p->next[i];
+	    }
+	}
+    }
+  return std::make_pair(found? (p->value):v, found);
 }
 
 
 template <class T>
-std::pair<const T&, bool> SkipList<T>::upper_bound(const T& v)
+std::pair<const T&, bool> SkipList<T>::upper_bound(const T& v) // first >v
 {
-  return std::make_pair(v,true);
+  SkipNode<T>* p = nullptr;
+  for(int i=nLevels-1;i>=0;i--)
+    {
+      if(!p && header[i]!=last && header[i]->value <= v)
+	p = header[i];
+      if(p)
+	{
+	  while(p->next[i] != last && p->next[i]->value <= v)
+	    p = p->next[i];
+	}
+    }
+  if(p)
+    p = p->next[0];
+  else
+    p = header[0];
+
+  if(p!=last)
+    return std::make_pair(p->value, true);
+  return std::make_pair(v, false);
 }
 
 
 template <class T>
 bool SkipList<T>::range_search(const T& l, const T& r)
 {
-  return true;
+  std::pair<const T&, bool> lb = lower_bound(l);
+  return lb.second && lb.first<=r;
 }
 
 
 template <class T>
 std::pair<const T&, bool> SkipList<T>::min()
 {
-  T a;
-  return std::make_pair(a,true);
+  if(!m_size)
+    {
+      T a;
+      return std::make_pair(a,false);
+    }
+  return std::make_pair(header[0]->value,true);
 }
 
 
 template <class T>
 std::pair<const T&, bool> SkipList<T>::max()
 {
-  T a;
-  return std::make_pair(a,true); 
+  if(!m_size)
+    {
+      T a;
+      return std::make_pair(a,false);
+    }
+  SkipNode<T>* p = nullptr;
+  for(int i=nLevels-1;i>=0;i--)
+    {
+      if(!p && header[i]!=last)
+	p = header[i];
+      if(p)
+	{
+	  while(p->next[i] != last)
+	    p = p->next[i];
+	}
+    }
+  return std::make_pair(p->value,true);
 }
 
 
