@@ -212,12 +212,8 @@ const T& BSNode<T>::lower_bound(const T& v) // first >=v
       if(l >= v)
 	return l;
     }
-  else if(value < v && right)
-    {
-      const T& r = left->lower_bound(v);
-      if(r < v)
-	return r; 
-    }
+  if(value < v && right)
+    return right->lower_bound(v);
   return value;
 }
 
@@ -227,16 +223,12 @@ const T& BSNode<T>::upper_bound(const T& v) // first >v
 {
   if(value > v && left)
     {
-      const T& l = left->lower_bound(v);
+      const T& l = left->upper_bound(v);
       if(l > v)
 	return l;
     }
-  else if(value <= v && right)
-    {
-      const T& r = left->lower_bound(v);
-      if(r <= v)
-	return r; 
-    }
+  if(value <= v && right)
+    return right->upper_bound(v);
   return value;
 }
 

@@ -87,10 +87,14 @@ Tree<T, N>& Tree<T, N>::remove(const T& v)
 template <class T, class N>
 bool Tree<T, N>::count(const T& v)
 {
-  bool r = root ? root->count(v) : 0;
-  while(root->parent)
-    root = (N*)root->parent;
-  return r;
+  if(root)
+    {
+      bool r = root->count(v);
+      while(root->parent)
+	root = (N*)root->parent;
+      return r;
+    }
+  return false;
 }
 
 
@@ -100,7 +104,7 @@ std::pair<const T&, bool> Tree<T, N>::lower_bound(const T& v) // first >=v
   if(!root)
     return std::make_pair(v, false);
 
-  T x = root->lower_bound(v);
+  const T& x = root->lower_bound(v);
   return std::make_pair(x, x >= v);
 }
 
@@ -111,7 +115,7 @@ std::pair<const T&, bool> Tree<T, N>::upper_bound(const T& v) // first >v
   if(!root)
     return std::make_pair(v, false);
 
-  T x = root->upper_bound(v);
+  const T& x = root->upper_bound(v);
   return std::make_pair(x, x > v);
 }
 
