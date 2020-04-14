@@ -1,8 +1,14 @@
-Explain how to run tests
-using run_tests.sh
+"tests.sh" runs or genarates test cases:
+- Run "$ tests.sh -h" to check how to use it
+- Run "$ tests.sh -r file1 file2" to produce and run tests cases for each data structure
+- Run "$ tests.sh -g file1 file2" to generate an output file "file2" using the STL
+  implementation of set based on the input specified on "file1". This output file "file2" can
+  then be used with the "-r" flag for testing our implementations agains the STL set implementation
+- Using the "-r" flag, the script produces a "results" directory with testing information:
+  - Time
+  - Diff comparison with the expected output according to "file2"
 
-How run_tests.sh works
+The "tests" directory contains a couple of test files that we have used for analysing and
+comparing our data structures.
 
-Where the output goes and what output there is
-
-Add running time and space usage
+The "lib" directory contains our implementation of our choosen data structures
