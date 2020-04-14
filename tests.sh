@@ -71,7 +71,7 @@ check_tests() {
 	OUTPUT="$RES_DIR/$(basename ${file%.*})_$(date +"%Y%m%d%H%M%S").result"
 	TIME="$(tail -n 3 $file)"
 	(head -n -4 "$file") > "$TEMP_DIR/content"
-	echo "$TIME" > "$OUTPUT"
+	echo -e "$TIME\n" > "$OUTPUT"
 	DIFF="$(diff $1 $TEMP_DIR/content)"
 	if [ "$DIFF" == "" ]; then
 	    echo "All OK" | tee -a "$OUTPUT"
