@@ -2,14 +2,14 @@
 
 TEMP_DIR="temp"
 RES_DIR="results"
-TEST_CPP="test.cpp"
+TEST_CPP="tests/run.cpp"
 TEST_OUT="test.out"
 GEN_OUT="gen.out"
 DS_NAMES=("STL" "Tree\nBS" "Tree\nAVL" "Tree\nSplay" "Tree\nTreap" "SkipList")
 
 print_usage() {
     echo -e "Usage: $0 OPTION FILE1 FILE2
-    Test data structures or generate expexted output file according to STL implementation.\n
+    Test data structures or generate expected output file according to STL implementation.\n
     -r\tFILE1 is test input and FILE2 is expected output
     -g\tFILE1 is test input and FILE2 is output
     -h\tShow usage\n"
@@ -59,7 +59,8 @@ try_tests() {
     for file in "$TEMP_DIR"/*.in; do
 	OUTPUT="${file%.*}.output"
 	echo "$(basename $OUTPUT)"
-	(time "./$TEMP_DIR/$TEST_OUT" < "$file" > "$OUTPUT") 2>&1 | tee -a "$OUTPUT"
+	"./$TEMP_DIR/$TEST_OUT" < "$file" > "$OUTPUT"
+	echo "time: $(tail -n 1 $OUTPUT)"
 	# add space
     done
 }
@@ -69,8 +70,8 @@ check_tests() {
     for file in "$TEMP_DIR"/*.output; do
 	echo "Checking if expected output matches for $(basename $file)..."
 	OUTPUT="$RES_DIR/$(basename ${file%.*})_$(date +"%Y%m%d%H%M%S").result"
-	TIME="$(tail -n 3 $file)"
-	(head -n -4 "$file") > "$TEMP_DIR/content"
+	TIME="$(tail -n 1 $file)"
+	(head -n -1 "$file") > "$TEMP_DIR/content"
 	echo -e "$TIME\n" > "$OUTPUT"
 	DIFF="$(diff $1 $TEMP_DIR/content)"
 	if [ "$DIFF" == "" ]; then
@@ -82,7 +83,11 @@ check_tests() {
 }
 
 create_test() {
-    "./$TEMP_DIR/$TEST_OUT" < "$1" > "$2"
+    echo -e "STL\n" | cat > "temp_file"
+    cat "$1" >> "temp_file"
+    "./$TEMP_DIR/$TEST_OUT" < "temp_file" > "temp_file2"
+    (head -n -1 "temp_file2") > "$2"
+    rm temp_file temp_file2
 }
 
 cleanup() {

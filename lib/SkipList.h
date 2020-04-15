@@ -34,7 +34,7 @@ template <class T>
 class SkipList : public Set<T>
 {
 private:
-  const double pLevel{0.7};
+  const double pLevel{0.5};
   unsigned int nLevels{0};
   std::vector<SkipNode<T>*> header;
   SkipNode<T>* last;
