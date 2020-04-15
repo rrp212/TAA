@@ -1,7 +1,7 @@
 // int   or   std::string
-#define MYTYPE std::string
+#define MYTYPE int
 // 0     or   "x"
-#define DEFAULT "x"
+#define DEFAULT 0
 #define INPUT(x) std::cin >> x
 #define PRINT(x) std::cout << x << std::endl
 #define SHOW false

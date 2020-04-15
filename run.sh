@@ -60,7 +60,7 @@ try_tests() {
 	OUTPUT="${file%.*}.output"
 	echo "$(basename $OUTPUT)"
 	"./$TEMP_DIR/$TEST_OUT" < "$file" > "$OUTPUT"
-	echo "time: $(tail -n 1 $OUTPUT)"
+	echo "Time: $(tail -n 1 $OUTPUT)"
 	# add space
     done
 }

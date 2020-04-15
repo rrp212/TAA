@@ -1,3 +1,4 @@
+50
 empty
 size
 insert 100
@@ -48,4 +49,3 @@ remove 100
 remove 500
 min
 max
-quit
