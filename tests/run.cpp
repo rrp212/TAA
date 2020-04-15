@@ -7,6 +7,7 @@
 #define SHOW false
 #define DEBUG (true && SHOW)
 
+#include <algorithm>
 #include <ctime>
 #include <iostream>
 #include <string>
@@ -56,8 +57,20 @@ int main()
     S = &skip;
   else
     S = &base;
-
-
+  
+  
+  
+  // >>>>>>>>>>>> INSERT <<<<<<<<<<<<
+  
+  srand(42);
+  std::vector<int> VI;
+  for(int i=1;i<=1000000;i++)
+    VI.push_back(i);
+  std::random_shuffle(VI.begin(), VI.end());
+  for(int i=0;i<1000000;i++)
+    S->insert(VI[i]);
+  
+  
   
   // >>>>>>>>>>>> INPUT <<<<<<<<<<<<
   
@@ -76,8 +89,8 @@ int main()
 	INPUT(v2);
       VV.push_back(std::make_pair(v1,v2));
     }
-
-
+  
+  
   
   // >>>>>>>>>>>> WORK <<<<<<<<<<<<
   
