@@ -1,4 +1,4 @@
-# The script "run.sh" is used to run the tests or generate new ones
+# The script "run.sh" is used to run tests or generate new ones
 
 ## Usage:
 * Run "$ run.sh -h" to check how to use it
@@ -22,4 +22,4 @@ This directory contains all the test files that were used during out analysis. I
 some C++ that were used for automated test creation.
 
 # The "lib" directory
-This directory contains the template classes of each one of our chosen data structure.
+This directory contains the template classes for each data structure.
