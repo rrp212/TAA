@@ -37,7 +37,7 @@ int main()
 	  break;
       cout << OPS[j];
       if(3<=j && j<=7)
-	cout << " " << (lower_lim+rand()%upper_lim);
+	cout << " " << (lower_lim+rand()%(upper_lim-lower_lim+1));
       else if(j==8)
 	{
 	  long long l = lower_lim+rand()%(upper_lim-lower_lim+1);
