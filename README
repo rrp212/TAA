@@ -1,14 +1,25 @@
-"run.sh" runs or genarates test cases:
-- Run "$ run.sh -h" to check how to use it
-- Run "$ run.sh -r file1 file2" to produce and run tests cases for each data structure
-- Run "$ run.sh -g file1 file2" to generate an output file "file2" using the STL
-  implementation of set based on the input specified on "file1". This output file "file2" can
-  then be used with the "-r" flag for testing our implementations agains the STL set implementation
-- Using the "-r" flag, the script produces a "results" directory with testing information:
-  - Time
-  - Diff comparison with the expected output according to "file2"
+# The script "run.sh" is used to run the tests or generate new ones
 
-The "tests" directory contains a couple of test files that we have used for analysing and
-comparing our data structures.
+## Usage:
+* Run "$ run.sh -h" to check how to use it
+* Run "$ run.sh -r file1 file2" to produce and run tests cases for each data structure.
+  The results are left in the "results" directory.
+* Run "$ run.sh -g file1 file2" to generate an output file "file2" using the STL.
+  implementation of set based on the input specified on "file1". The output file "file2" can.
+  then be used with this script using the "-r" flag for comparing the output of implementations
+  against C++ STL's Set
+  
+## Results
+* If it is run with the "-r" flag:
+  - Diff comparison with the expected output;
+  - Running time.
+  
+* If it is run with the "-g" flag:
+  - Output provided by C++ STL's Set.
 
-The "lib" directory contains our implementation of our choosen data structures
+# The "tests" directory
+This directory contains all the test files that were used during out analysis. It also contains
+some C++ that were used for automated test creation.
+
+# The "lib" directory
+This directory contains the template classes of each one of our chosen data structure.
