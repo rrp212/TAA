@@ -21,5 +21,44 @@
 This directory contains all the test files that were used during out analysis. It also contains
 some C++ that were used for automated test creation.
 
+## Test files index
+* test1 - small test
+* test2 - large test int
+* test3 - large test string
+* test4 - insert int 1.0e5
+* test5 - insert int 1.5e5
+* test6 - insert int 2.5e5
+* test7 - insert int 4.0e5
+* test8 - insert int 6.4e5
+* test9 - insert int 1.0e6
+* test10 - insert int 1.5e6
+* test11 - insert int 2.5e6
+* test12 - insert int 4.0e6
+* test13 - insert int 6.4e6
+* test14 - insert int 1.0e7
+* test15 - remove int 1.0e5
+* test16 - remove int 1.5e5
+* test17 - remove int 2.5e5
+* test18 - remove int 4.0e5
+* test19 - remove int 6.4e5
+* test20 - remove int 1.0e6
+* test21 - remove int 1.5e6
+* test22 - remove int 2.5e6
+* test23 - remove int 4.0e6
+* test24 - remove int 6.4e6
+* test25 - remove int 1.0e7
+* test26 - count  int 1.0e5
+* test27 - count  int 1.5e5
+* test28 - count  int 2.5e5
+* test29 - count  int 4.0e5
+* test30 - count  int 6.4e5
+* test31 - count  int 1.0e6
+* test32 - count  int 1.5e6
+* test33 - count  int 2.5e6
+* test34 - count  int 4.0e6
+* test35 - count  int 6.4e6
+* test36 - count  int 1.0e7
+* test37 - count  int 1.0e6 (subset 1--10000 * 100)
+
 # The "lib" directory
 This directory contains the template classes for each data structure.
